@@ -1,7 +1,3 @@
-# COMP2521 24T3 - Assignment 1
-
-# !!! DO NOT MODIFY THIS FILE !!!
-
 CC = clang
 CFLAGS = -Wall -Wvla -Werror -gdwarf-4
 
