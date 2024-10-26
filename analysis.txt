@@ -1,0 +1,92 @@
+
+========================================================================
+                          Complexity Analysis
+========================================================================
+
+- For MsetUnion, MsetIntersection, MsetIncluded and MsetEquals, n is the size
+  of the first multiset (s1) and m is the size of the second multiset (s2).
+- For MsetMostCommon, n is the number of distinct elements in the given multiset and k
+  is the given value of k.
+
+
+------------------
+    MsetUnion
+------------------
+
+Worst case time complexity: O[(m+n)log(m+n)]
+
+Explanation: 
+
+First, the insertAll function traverses trees s1 and s2 in an in-order manner, 
+visiting each node exactly once, resulting in a traversal time of O(m+n). 
+Each insertion into the result set using MsetInsertMany depends on the height of the result set tree. 
+The resulting tree can contain up to m+n elements, 
+which means that the average time complexity for each insertion is O(log(m+n)). 
+Since there are m+n elements to be inserted, each taking O(log(m+n)) time,
+
+------------------
+ MsetIntersection
+------------------
+
+Worst case time complexity: O[n*log(m)]
+
+Explanation: 
+
+The findIntersection function traverses s1 resulting in a traversal time of O(n).
+For each element in s1, the function MsetGetCount(otherSet, tree->elem) 
+is called to check its presence in s2. 
+Since s2 is represented as a binary search tree with m elements, 
+searching for an element in s2 takes O(log(m)) time. 
+Thus, for each element in s1, the search in s2 takes O(log(m)) time.
+
+------------------
+   MsetIncluded
+------------------
+
+Worst case time complexity: O[n*log(m)]
+
+Explanation: 
+
+The function traverses s1 (O(n)), 
+and for each element in s1, 
+it checks if the element is present in s2 using MsetGetCount, 
+which takes O(log(m)) time for each element. 
+
+------------------
+    MsetEquals
+------------------
+
+Worst case time complexity: O[m*log(n)+n*log(m)]
+
+Explanation: 
+
+MsetEquals calls MsetIncluded(s1, s2) and MsetIncluded(s2, s1)
+Time complexity for MsetIncluded(s1, s2) : O[m * log(n)]
+Time complexity for MsetIncluded(s2, s1) : O[n * log(m)]
+Total time complexity for MsetEquals : O[m * log(n) + n * log(m)]
+
+------------------
+  MsetMostCommon
+------------------
+
+Worst case time complexity: O[n*log(n)]
+
+Explanation: 
+
+it first collects all n elements from the multiset, 
+taking O(n) time. It then sorts these elements 
+based on their counts using a standard sorting algorithm, 
+which requires O(n log n) time. 
+The sorting step is the most time-consuming and dominates the overall complexity.
+
+
+
+
+
+
+
+
+
+
+
+
