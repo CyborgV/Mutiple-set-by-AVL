@@ -273,7 +273,7 @@ void delNode(Node *tree) {
     if (*tree == NULL)
         return;
 
-    void balanceNode(Node *tree);
+    balanceNode(tree);
 }
 
 Node findMax(Node t) {
